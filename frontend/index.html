@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CrazyGift - Telegram WebApp Casino</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo" onclick="window.location.href='profile.html'">
+            <img src="assets/icons/triangle_icon.png" alt="Logo">
+        </div>
+        
+        <div class="balance-widget" onclick="window.location.href='balance.html'">
+            <img src="assets/icons/wallet_icon.png" alt="Stars" class="balance-icon">
+            <span class="balance-amount" id="balance">Пополнить</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Live Feed -->
+        <section class="live-feed">
+            <div class="live-feed-header">
+                <h2 class="live-feed-title">Лента дропа</h2>
+                <div class="live-feed-balance">
+                    <img src="assets/icons/internet_icon.png" alt="Online" class="balance-icon">
+                    <span>300</span>
+                </div>
+            </div>
+            <div class="live-feed-items">
+                <div class="live-item timer">
+                    <img src="assets/icons/king_icon.png" alt="King" class="timer-icon-top" id="timer-icon-top">
+                    <div>24ч.</div>
+                    <img src="assets/icons/arrow_icon.png" alt="Arrow" class="timer-icon-bottom" id="timer-icon-bottom">
+                </div>
+                <div class="live-item">
+                    <img src="assets/gifts/gift1.png" alt="Gift 1">
+                </div>
+                <div class="live-item">
+                    <img src="assets/gifts/gift2.png" alt="Gift 2">
+                </div>
+                <div class="live-item">
+                    <img src="assets/gifts/gift3.png" alt="Gift 3">
+                </div>
+                <div class="live-item">
+                    <img src="assets/gifts/gift4.png" alt="Gift 4">
+                </div>
+                <div class="live-item">
+                    <img src="assets/gifts/gift5.png" alt="Gift 5">
+                </div>
+            </div>
+        </section>
+
+        <!-- Promotional Banner -->
+        <section class="promo-banner" onclick="window.location.href='referral.html'">
+            <img src="assets/promo_banner.png" alt="Приглашай друзей и открывай кейсы!">
+        </section>
+
+        <!-- Cases Grid -->
+        <section class="cases-section">
+            <div class="cases-grid">
+                <div class="case-card" onclick="window.location.href='case.html?id=1'">
+                    <div class="case-image">
+                        <img src="assets/cases/case1.png" alt="Telegram Case #1">
+                    </div>
+                    <div class="case-title">Telegram Case #1</div>
+                    <div class="case-price">
+                        150
+                        <img src="assets/icons/star_icon.png" alt="Stars">
+                    </div>
+                </div>
+                
+                <div class="case-card" onclick="window.location.href='case.html?id=2'">
+                    <div class="case-image">
+                        <img src="assets/cases/case2.png" alt="Telegram Case #2">
+                    </div>
+                    <div class="case-title">Telegram Case #2</div>
+                    <div class="case-price">
+                        250
+                        <img src="assets/icons/star_icon.png" alt="Stars">
+                    </div>
+                </div>
+                
+                <div class="case-card" onclick="window.location.href='case.html?id=3'">
+                    <div class="case-image">
+                        <img src="assets/cases/case_mock.png" alt="Premium Case">
+                    </div>
+                    <div class="case-title">Premium Case</div>
+                    <div class="case-price">
+                        500
+                        <img src="assets/icons/star_icon.png" alt="Stars">
+                    </div>
+                </div>
+                
+                <div class="case-card" onclick="window.location.href='case.html?id=4'">
+                    <div class="case-image">
+                        <img src="assets/cases/case_mock.png" alt="Elite Case">
+                    </div>
+                    <div class="case-title">Elite Case</div>
+                    <div class="case-price">
+                        1000
+                        <img src="assets/icons/star_icon.png" alt="Stars">
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active">
+                <img src="assets/icons/home_icon.png" alt="Home" class="nav-icon">
+                <span class="nav-text">Main</span>
+            </a>
+            <a href="inventory.html" class="nav-item">
+                <img src="assets/icons/upgrade_icon.png" alt="Inventory" class="nav-icon">
+                <span class="nav-text">Upgrade</span>
+            </a>
+            <a href="history.html" class="nav-item">
+                <img src="assets/icons/refferal_icon.png" alt="History" class="nav-icon">
+                <span class="nav-text">Partner</span>
+            </a>
+        </div>
+    </nav>
+
+    <script src="js/main.js"></script>
+</body>
+</html>

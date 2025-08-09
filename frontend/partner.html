@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+   <title>Partner - CrazyGift</title>
+   <script src="https://telegram.org/js/telegram-web-app.js"></script>
+   <link rel="stylesheet" href="css/main.css">
+   <link rel="stylesheet" href="css/components.css">
+   <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+   <!-- Header -->
+   <header class="header">
+       <div class="header-left">
+           <div class="app-logo" onclick="window.location.href='inventory.html'">
+               <img src="assets/logo_icon.png" alt="Logo" onerror="this.innerHTML='⚡'">
+           </div>
+       </div>
+       
+       <div class="app-title">
+           <h1>CrazyGift</h1>
+           <div class="subtitle">мини-приложение</div>
+       </div>
+       
+       <div class="header-right">
+           <div class="balance-widget" onclick="window.location.href='topup.html'">
+               <img src="assets/star_icon.png" alt="Stars" class="balance-icon">
+               <span class="balance-amount" id="balance">1451</span>
+           </div>
+       </div>
+   </header>
+
+   <!-- Main Content -->
+   <main class="main-content">
+       <!-- Referral Header -->
+       <section class="referral-header">
+           <h2>Получайте 10% за депозиты ваших друзей!</h2>
+           
+           <div class="invite-section">
+               <button class="btn btn-primary btn-full invite-btn" onclick="inviteFriends()">
+                   👥 Пригласить друзей
+               </button>
+               
+               <button class="btn btn-secondary copy-link-btn" onclick="copyReferralLink()">
+                   📋
+               </button>
+           </div>
+       </section>
+
+       <!-- Referral Balance -->
+       <section class="referral-balance">
+           <div class="balance-card">
+               <div class="balance-info">
+                   <span class="balance-label">Реферальный баланс</span>
+                   <div class="balance-value">
+                       <img src="assets/star_icon.png" alt="Stars" class="balance-icon">
+                       <span id="referralBalance">25.6</span>
+                   </div>
+               </div>
+               <button class="btn btn-primary withdraw-btn" onclick="withdrawReferralBalance()">
+                   Вывести ↓
+               </button>
+           </div>
+       </section>
+
+       <!-- Tasks Section -->
+       <section class="tasks-section">
+           <h3>Задания</h3>
+           
+           <div class="tasks-list">
+               <div class="task-item">
+                   <div class="task-info">
+                       <div class="task-icon">👥</div>
+                       <div class="task-details">
+                           <div class="task-title">Пригласи 75 друзей</div>
+                           <div class="task-progress">
+                               <span class="progress-text">12/75</span>
+                               <div class="progress-bar-container">
+                                   <div class="progress-bar" style="width: 16%;"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="task-actions">
+                       <button class="btn btn-secondary task-btn copy-btn" onclick="copyReferralLink()">
+                           Скопировать
+                       </button>
+                       <button class="btn btn-primary task-btn update-btn" onclick="updateProgress(1)">
+                           🔄 Обновить
+                       </button>
+                   </div>
+               </div>
+
+               <div class="task-item">
+                   <div class="task-info">
+                       <div class="task-icon">👥</div>
+                       <div class="task-details">
+                           <div class="task-title">Пригласи 45 друзей</div>
+                           <div class="task-progress">
+                               <span class="progress-text">12/45</span>
+                               <div class="progress-bar-container">
+                                   <div class="progress-bar" style="width: 26.7%;"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="task-actions">
+                       <button class="btn btn-secondary task-btn copy-btn" onclick="copyReferralLink()">
+                           Скопировать
+                       </button>
+                       <button class="btn btn-primary task-btn update-btn" onclick="updateProgress(2)">
+                           🔄 Обновить
+                       </button>
+                   </div>
+               </div>
+
+               <div class="task-item completed">
+                   <div class="task-info">
+                       <div class="task-icon completed">✅</div>
+                       <div class="task-details">
+                           <div class="task-title">Пригласи 15 друзей</div>
+                           <div class="task-progress">
+                               <span class="progress-text completed">15/15</span>
+                               <div class="progress-bar-container">
+                                   <div class="progress-bar completed" style="width: 100%;"></div>
+                               </div>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="task-actions">
+                       <div class="completed-badge">Выполнено</div>
+                   </div>
+               </div>
+           </div>
+       </section>
+
+       <!-- Statistics -->
+       <section class="referral-stats" style="margin-top: 40px;">
+           <h3>Статистика</h3>
+           
+           <div class="stats-grid">
+               <div class="stat-card">
+                   <div class="stat-value">12</div>
+                   <div class="stat-label">Приглашено друзей</div>
+               </div>
+               
+               <div class="stat-card">
+                   <div class="stat-value">156.7</div>
+                   <div class="stat-label">Всего заработано ⭐</div>
+               </div>
+               
+               <div class="stat-card">
+                   <div class="stat-value">5</div>
+                   <div class="stat-label">Активных рефералов</div>
+               </div>
+               
+               <div class="stat-card">
+                   <div class="stat-value">8.3%</div>
+                   <div class="stat-label">Конверсия</div>
+               </div>
+           </div>
+       </section>
+   </main>
+
+   <!-- Bottom Navigation -->
+   <nav class="bottom-nav">
+       <div class="nav-container">
+           <a href="index.html" class="nav-item">
+               <img src="assets/home_icon.png" alt="Home" class="nav-icon">
+               <span class="nav-text">Main</span>
+           </a>
+           <a href="upgrade.html" class="nav-item">
+               <img src="assets/upgrade_icon.png" alt="Upgrade" class="nav-icon">
+               <span class="nav-text">Upgrade</span>
+           </a>
+           <a href="partner.html" class="nav-item active">
+               <img src="assets/refferal_icon.png" alt="Partner" class="nav-icon">
+               <span class="nav-text">Partner</span>
+           </a>
+       </div>
+   </nav>
+
+   <!-- JavaScript -->
+   <script src="js/storage.js"></script>
+   <script src="js/ui.js"></script>
+   <script src="js/app.js"></script>
+   <script src="js/game.js"></script>
+
+   <style>
+       .referral-header {
+           text-align: center;
+           margin-bottom: 30px;
+       }
+
+       .referral-header h2 {
+           color: var(--text-primary);
+           font-size: 18px;
+           font-weight: 600;
+           margin-bottom: 25px;
+           line-height: 1.4;
+       }
+
+       .invite-section {
+           display: flex;
+           gap: 10px;
+           align-items: center;
+       }
+
+       .invite-btn {
+           flex: 1;
+           font-size: 16px;
+           padding: 14px 20px;
+       }
+
+       .copy-link-btn {
+           width: 50px;
+           height: 50px;
+           border-radius: 25px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 18px;
+           padding: 0;
+       }
+
+       .referral-balance {
+           margin-bottom: 30px;
+       }
+
+       .balance-card {
+           background: var(--bg-card);
+           border-radius: var(--border-radius);
+           padding: 20px;
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           border: 1px solid var(--bg-secondary);
+       }
+
+       .balance-info {
+           flex: 1;
+       }
+
+       .balance-label {
+           color: var(--text-secondary);
+           font-size: 14px;
+           display: block;
+           margin-bottom: 8px;
+       }
+
+       .balance-value {
+           display: flex;
+           align-items: center;
+           gap: 8px;
+           color: var(--accent-yellow);
+           font-size: 20px;
+           font-weight: 600;
+       }
+
+       .balance-value .balance-icon {
+           width: 20px;
+           height: 20px;
+       }
+
+       .withdraw-btn {
+           padding: 10px 16px;
+           font-size: 14px;
+           border-radius: 20px;
+       }
+
+       .tasks-section {
+           margin-bottom: 30px;
+       }
+
+       .tasks-section h3 {
+           color: var(--accent-yellow);
+           font-size: 16px;
+           font-weight: 600;
+           margin-bottom: 20px;
+       }
+
+       .tasks-list {
+           display: flex;
+           flex-direction: column;
+           gap: 15px;
+       }
+
+       .task-item {
+           background: var(--bg-card);
+           border-radius: var(--border-radius);
+           padding: 20px;
+           border: 1px solid var(--bg-secondary);
+           transition: border-color 0.2s;
+       }
+
+       .task-item:hover {
+           border-color: var(--accent-yellow);
+       }
+
+       .task-item.completed {
+           border-color: #10B981;
+           background: rgba(16, 185, 129, 0.1);
+       }
+
+       .task-info {
+           display: flex;
+           align-items: flex-start;
+           gap: 15px;
+           margin-bottom: 15px;
+       }
+
+       .task-icon {
+           width: 40px;
+           height: 40px;
+           background: var(--bg-secondary);
+           border-radius: 20px;
+           display: flex;
+           align-items: center;
+           justify-content: center;
+           font-size: 18px;
+           flex-shrink: 0;
+       }
+
+       .task-icon.completed {
+           background: #10B981;
+           color: white;
+       }
+
+       .task-details {
+           flex: 1;
+       }
+
+       .task-title {
+           color: var(--text-primary);
+           font-size: 14px;
+           font-weight: 600;
+           margin-bottom: 8px;
+       }
+
+       .task-progress {
+           display: flex;
+           align-items: center;
+           justify-content: space-between;
+           gap: 15px;
+       }
+
+       .progress-text {
+           color: var(--text-secondary);
+           font-size: 12px;
+           font-weight: 500;
+           min-width: 40px;
+       }
+
+       .progress-text.completed {
+           color: #10B981;
+       }
+
+       .progress-bar-container {
+           flex: 1;
+           height: 6px;
+           background: var(--bg-secondary);
+           border-radius: 3px;
+           overflow: hidden;
+       }
+
+       .progress-bar {
+           height: 100%;
+           background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+           border-radius: 3px;
+           transition: width 0.3s ease;
+       }
+
+       .progress-bar.completed {
+           background: #10B981;
+       }
+
+       .task-actions {
+           display: flex;
+           gap: 10px;
+       }
+
+       .task-btn {
+           flex: 1;
+           padding: 8px 12px;
+           font-size: 12px;
+           border-radius: 15px;
+       }
+
+       .completed-badge {
+           background: #10B981;
+           color: white;
+           padding: 8px 16px;
+           border-radius: 15px;
+           font-size: 12px;
+           font-weight: 600;
+           text-align: center;
+           flex: 1;
+       }
+
+       .referral-stats h3 {
+           color: var(--text-primary);
+           font-size: 16px;
+           font-weight: 600;
+           margin-bottom: 20px;
+       }
+
+       .stats-grid {
+           display: grid;
+           grid-template-columns: 1fr 1fr;
+           gap: 15px;
+       }
+
+       .stat-card {
+           background: var(--bg-card);
+           border-radius: var(--border-radius);
+           padding: 20px;
+           text-align: center;
+           border: 1px solid var(--bg-secondary);
+       }
+
+       .stat-value {
+           color: var(--accent-yellow);
+           font-size: 24px;
+           font-weight: 700;
+           margin-bottom: 8px;
+       }
+
+       .stat-label {
+           color: var(--text-secondary);
+           font-size: 12px;
+           line-height: 1.3;
+       }
+
+       @media (max-width: 375px) {
+           .referral-header h2 {
+               font-size: 16px;
+           }
+
+           .invite-btn {
+               font-size: 14px;
+               padding: 12px 16px;
+           }
+
+           .copy-link-btn {
+               width: 45px;
+               height: 45px;
+               font-size: 16px;
+           }
+
+           .balance-card {
+               padding: 15px;
+           }
+
+           .balance-value {
+               font-size: 18px;
+           }
+
+           .task-item {
+               padding: 15px;
+           }
+
+           .task-info {
+               gap: 12px;
+           }
+
+           .task-icon {
+               width: 35px;
+               height: 35px;
+               font-size: 16px;
+           }
+
+           .stats-grid {
+               gap: 12px;
+           }
+
+           .stat-card {
+               padding: 15px;
+           }
+
+           .stat-value {
+               font-size: 20px;
+           }
+       }
+   </style>
+
+   <script>
+       // Referral system data
+       let referralData = {
+           balance: 25.6,
+           totalEarned: 156.7,
+           friendsInvited: 12,
+           activeReferrals: 5,
+           conversionRate: 8.3,
+           referralLink: 'https://t.me/CrazyGiftBot?start=ref123456',
+           tasks: [
+               { id: 1, target: 75, current: 12, completed: false },
+               { id: 2, target: 45, current: 12, completed: false },
+               { id: 3, target: 15, current: 15, completed: true }
+           ]
+       };
+
+       // Initialize partner page
+       function initPartnerPage() {
+           console.log('👥 Initializing partner page');
+           updateReferralData();
+           updateBalance();
+       }
+
+       function updateReferralData() {
+           // Update referral balance
+           document.getElementById('referralBalance').textContent = referralData.balance.toFixed(1);
+           
+           // Update stats
+           const statCards = document.querySelectorAll('.stat-card');
+           if (statCards.length >= 4) {
+               statCards[0].querySelector('.stat-value').textContent = referralData.friendsInvited;
+               statCards[1].querySelector('.stat-value').textContent = referralData.totalEarned.toFixed(1);
+               statCards[2].querySelector('.stat-value').textContent = referralData.activeReferrals;
+               statCards[3].querySelector('.stat-value').textContent = referralData.conversionRate.toFixed(1) + '%';
+           }
+       }
+
+       function inviteFriends() {
+           if (window.Telegram?.WebApp) {
+               const tg = window.Telegram.WebApp;
+               const shareText = `🎁 Присоединяйся к CrazyGift! Открывай кейсы и выигрывай крутые призы!\n\n${referralData.referralLink}`;
+               
+               // Use Telegram sharing
+               if (tg.openTelegramLink) {
+                   tg.openTelegramLink(`https://t.me/share/url?url=${encodeURIComponent(referralData.referralLink)}&text=${encodeURIComponent(shareText)}`);
+               } else {
+                   // Fallback to copying link
+                   copyReferralLink();
+               }
+           } else {
+               // Fallback for development
+               if (navigator.share) {
+                   navigator.share({
+                       title: 'CrazyGift - Открывай кейсы!',
+                       text: 'Присоединяйся к CrazyGift! Открывай кейсы и выигрывай крутые призы!',
+                       url: referralData.referralLink
+                   }).catch(() => {
+                       copyReferralLink();
+                   });
+               } else {
+                   copyReferralLink();
+               }
+           }
+       }
+
+       function copyReferralLink() {
+           if (navigator.clipboard) {
+               navigator.clipboard.writeText(referralData.referralLink).then(() => {
+                   alert('Реферальная ссылка скопирована!');
+                   vibrate([50]);
+               }).catch(() => {
+                   fallbackCopyTextToClipboard();
+               });
+           } else {
+               fallbackCopyTextToClipboard();
+           }
+       }
+
+       function fallbackCopyTextToClipboard() {
+           const textArea = document.createElement('textarea');
+           textArea.value = referralData.referralLink;
+           textArea.style.position = 'fixed';
+           textArea.style.left = '-999999px';
+           textArea.style.top = '-999999px';
+           document.body.appendChild(textArea);
+           textArea.focus();
+           textArea.select();
+           
+           try {
+               document.execCommand('copy');
+               alert('Реферальная ссылка скопирована!');
+               vibrate([50]);
+           } catch (err) {
+               alert('Не удалось скопировать ссылку');
+           }
+           
+           document.body.removeChild(textArea);
+       }
+
+       function withdrawReferralBalance() {
+           if (referralData.balance < 1) {
+               alert('Минимальная сумма для вывода: 1.0 ⭐');
+               return;
+           }
+
+           const confirmWithdraw = confirm(`Вы хотите вывести ${referralData.balance.toFixed(1)} ⭐ на основной баланс?`);
+           
+           if (confirmWithdraw) {
+               // Add to main balance
+               if (window.GameState) {
+                   GameState.balance += referralData.balance;
+               }
+               
+               // Reset referral balance
+               referralData.balance = 0;
+               
+               // Update UI
+               updateBalance();
+               updateReferralData();
+               saveGameState();
+               
+               alert('Средства переведены на основной баланс!');
+               vibrate([100, 50, 100]);
+           }
+       }
+
+       function updateProgress(taskId) {
+           // Show loading state
+           const updateBtn = document.querySelector(`.task-item:nth-child(${taskId}) .update-btn`);
+           const originalText = updateBtn.textContent;
+           updateBtn.textContent = '⏳ Обновляем...';
+           updateBtn.disabled = true;
+           
+           // Simulate API call
+           setTimeout(() => {
+               updateBtn.textContent = originalText;
+               updateBtn.disabled = false;
+               
+               // For demo, randomly increase progress
+               const task = referralData.tasks.find(t => t.id === taskId);
+               if (task && !task.completed) {
+                   const increase = Math.floor(Math.random() * 3) + 1;
+                   task.current = Math.min(task.current + increase, task.target);
+                   
+                   if (task.current >= task.target) {
+                       task.completed = true;
+                       alert(`Задание выполнено! +${task.target * 0.1} ⭐`);
+                       referralData.balance += task.target * 0.1;
+                   } else {
+                       alert(`Прогресс обновлен: ${task.current}/${task.target}`);
+                   }
+                   
+                   updateTaskProgress(taskId, task);
+                   updateReferralData();
+               } else {
+                   alert('Нет новых рефералов');
+               }
+           }, 1500);
+       }
+
+       function updateTaskProgress(taskId, task) {
+           const taskItems = document.querySelectorAll('.task-item');
+           const taskIndex = taskId - 1;
+           
+           if (taskItems[taskIndex]) {
+               const taskItem = taskItems[taskIndex];
+               const progressText = taskItem.querySelector('.progress-text');
+               const progressBar = taskItem.querySelector('.progress-bar');
+               const taskActions = taskItem.querySelector('.task-actions');
+               
+               const percentage = (task.current / task.target) * 100;
+               
+               progressText.textContent = `${task.current}/${task.target}`;
+               progressBar.style.width = `${percentage}%`;
+               
+               if (task.completed) {
+                   taskItem.classList.add('completed');
+                   taskItem.querySelector('.task-icon').classList.add('completed');
+                   taskItem.querySelector('.task-icon').textContent = '✅';
+                   progressText.classList.add('completed');
+                   progressBar.classList.add('completed');
+                   
+                   taskActions.innerHTML = '<div class="completed-badge">Выполнено</div>';
+               }
+           }
+       }
+
+       function updateBalance() {
+           const balance = document.getElementById('balance');
+           if (balance && window.GameState) {
+               balance.textContent = GameState.balance || 1451;
+           }
+       }
+
+       function saveGameState() {
+           if (window.GameState) {
+               try {
+                   localStorage.setItem('crazyGiftGameState', JSON.stringify(GameState));
+               } catch (e) {
+                   console.error('Failed to save game state:', e);
+               }
+           }
+       }
+
+       function vibrate(pattern) {
+           if (navigator.vibrate) {
+               navigator.vibrate(pattern);
+           }
+       }
+
+       // Initialize when page loads
+       document.addEventListener('DOMContentLoaded', () => {
+           // Initialize GameState if not exists
+           if (!window.GameState) {
+               window.GameState = {
+                   balance: 1451,
+                   inventory: [],
+                   settings: {
+                       soundEnabled: true,
+                       vibrateEnabled: true,
+                       animationsEnabled: true
+                   }
+               };
+           }
+           
+           initPartnerPage();
+       });
+   </script>
+</body>
+</html>
