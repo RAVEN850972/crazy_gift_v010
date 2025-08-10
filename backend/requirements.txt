@@ -1,0 +1,13 @@
+# requirements.txt
+fastapi==0.104.1
+uvicorn==0.24.0
+sqlalchemy==2.0.23
+alembic==1.13.1
+pydantic==2.5.0
+aiosqlite==0.19.0        # SQLite async драйвер
+asyncpg==0.29.0          # PostgreSQL драйвер (для будущего)
+python-telegram-bot==20.7
+httpx==0.25.2            # HTTP клиент для TON API
+python-jose==3.3.0       # JWT токены
+python-multipart==0.0.6  # Для form data
+pydantic-settings==2.1.0 # Для настроек
