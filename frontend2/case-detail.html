@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Case Details - CrazyGift</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="styles/core/variables.css">
+    <link rel="stylesheet" href="styles/core/base.css">
+    <link rel="stylesheet" href="styles/core/layout.css">
+    
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/modals.css">
+    <link rel="stylesheet" href="styles/components/forms.css">
+    <link rel="stylesheet" href="styles/components/notifications.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="styles/pages/cases.css">
+    
+    <!-- Preload assets -->
+    <link rel="preload" href="assets/icons/star.svg" as="image">
+    <link rel="preload" href="assets/icons/box.svg" as="image">
+</head>
+<body class="case-detail-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo">
+            <img src="assets/icons/arrow_left.svg" alt="Back" onclick="window.Utils.URL.navigateTo('index.html')">
+        </div>
+        
+        <div class="balance-widget" onclick="window.Utils.URL.navigateTo('balance.html')">
+            <img src="assets/icons/star.svg" alt="Balance" class="balance-icon">
+            <span class="balance-amount">0</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Case Detail Header -->
+        <section class="case-detail-header">
+            <img src="assets/images/placeholder-case.png" alt="Case" class="case-detail-image">
+            <h1 class="case-detail-name">Mystery Box</h1>
+            <p class="case-detail-description">A mysterious box containing amazing prizes</p>
+            <div class="case-detail-price">100 💎</div>
+        </section>
+
+        <!-- Open Case Section -->
+        <section class="open-case-section">
+            <button class="open-case-btn">
+                <img src="assets/icons/box.svg" alt="" class="open-case-icon">
+                Open for 100 💎
+            </button>
+        </section>
+
+        <!-- Case Contents Section -->
+        <section class="case-contents-section">
+            <h2 class="case-contents-title">Possible Rewards</h2>
+            
+            <div class="case-contents-grid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+        </section>
+
+        <!-- Case Statistics Section -->
+        <section class="case-stats-section">
+            <h3 class="case-stats-title">Statistics</h3>
+            
+            <div class="case-stats-grid">
+                <div class="case-stat">
+                    <div class="case-stat-value">1,234</div>
+                    <div class="case-stat-label">Times Opened</div>
+                </div>
+                <div class="case-stat">
+                    <div class="case-stat-value">15%</div>
+                    <div class="case-stat-label">Rare Drop Rate</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Core JavaScript -->
+    <script src="js/core/api-client.js"></script>
+    <script src="js/core/telegram-app.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/notifications.js"></script>
+    <script src="js/core/haptic.js"></script>
+    
+    <!-- Utility JavaScript -->
+    <script src="js/utils/helpers.js"></script>
+    
+    <!-- Component JavaScript -->
+    <script src="js/components/modal.js"></script>
+    
+    <!-- Legacy scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    <script src="js/vibration-guard.js"></script>
+    <script src="js/telegram-version-manager.js"></script>
+    <script src="js/clean-console-init.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script src="js/pages/cases.js"></script>
+    
+    <!-- Initialize global game state -->
+    <script>
+        // Initialize global game state
+        window.GameState = window.GameState || {
+            balance: 0,
+            demoMode: true,
+            currentUserId: null,
+            user: null,
+            settings: {
+                sound: true,
+                vibration: false,
+                language: 'en',
+                notifications: true
+            }
+        };
+        
+        // Load saved state
+        if (window.gameStorage) {
+            window.gameStorage.loadGameState().then(state => {
+                if (state) {
+                    window.GameState = { ...window.GameState, ...state };
+                }
+            });
+        }
+    </script>
+</body>
+</html>

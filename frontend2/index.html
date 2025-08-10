@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CrazyGift - Telegram Gift Cases</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="styles/core/variables.css">
+    <link rel="stylesheet" href="styles/core/base.css">
+    <link rel="stylesheet" href="styles/core/layout.css">
+    
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/modals.css">
+    <link rel="stylesheet" href="styles/components/forms.css">
+    <link rel="stylesheet" href="styles/components/notifications.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="styles/pages/cases.css">
+    
+    <!-- Legacy main.css for any remaining styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    
+    <!-- Preload critical assets -->
+    <link rel="preload" href="assets/icons/triangle_icon.svg" as="image">
+    <link rel="preload" href="assets/icons/star.svg" as="image">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo" onclick="window.location.reload()">
+            <img src="assets/icons/triangle_icon.svg" alt="CrazyGift">
+        </div>
+        
+        <div class="balance-widget" id="balanceWidget">
+            <img src="assets/icons/star.svg" alt="Balance" class="balance-icon">
+            <span class="balance-amount">0</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Featured Case Section -->
+        <section class="featured-case-section">
+            <!-- Will be populated by JavaScript -->
+        </section>
+
+        <!-- Cases Grid Section -->
+        <section class="cases-grid-section">
+            <h2 class="section-title">All Cases</h2>
+            
+            <!-- Filter buttons -->
+            <div class="cases-filter">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="common">Common</button>
+                <button class="filter-btn" data-filter="rare">Rare</button>
+                <button class="filter-btn" data-filter="epic">Epic</button>
+                <button class="filter-btn" data-filter="legendary">Legendary</button>
+            </div>
+            
+            <!-- Cases Grid -->
+            <div class="cases-grid" id="casesGrid">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            
+            <!-- Loading state -->
+            <div class="cases-empty" id="loadingState" style="display: none;">
+                <div class="loading-spinner"></div>
+                <div class="cases-empty-text">Loading cases...</div>
+            </div>
+            
+            <!-- Empty state -->
+            <div class="cases-empty" id="emptyState" style="display: none;">
+                <img src="assets/icons/box.svg" alt="" class="cases-empty-icon">
+                <div class="cases-empty-text">No cases available</div>
+                <div class="cases-empty-subtitle">Check back later for new cases</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item active">
+                <img src="assets/icons/home.svg" alt="Home" class="nav-icon">
+                <span class="nav-text">Home</span>
+            </a>
+            
+            <a href="#" class="nav-item" onclick="window.notifications?.info('Coming soon!')">
+                <img src="assets/icons/inventory.svg" alt="Inventory" class="nav-icon">
+                <span class="nav-text">Inventory</span>
+            </a>
+            
+            <a href="#" class="nav-item" onclick="window.notifications?.info('Coming soon!')">
+                <img src="assets/icons/upgrade.svg" alt="Upgrade" class="nav-icon">
+                <span class="nav-text">Upgrade</span>
+            </a>
+            
+            <a href="profile.html" class="nav-item">
+                <img src="assets/icons/profile.svg" alt="Profile" class="nav-icon">
+                <span class="nav-text">Profile</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Core JavaScript -->
+    <script src="js/core/api-client.js"></script>
+    <script src="js/core/telegram-app.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/notifications.js"></script>
+    <script src="js/core/haptic.js"></script>
+    
+    <!-- Utility JavaScript -->
+    <script src="js/utils/helpers.js"></script>
+    
+    <!-- Component JavaScript -->
+    <script src="js/components/modal.js"></script>
+    
+    <!-- Legacy scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    <script src="js/vibration-guard.js"></script>
+    <script src="js/telegram-version-manager.js"></script>
+    <script src="js/clean-console-init.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script src="js/pages/main.js"></script>
+    
+    <!-- Initialize global game state -->
+    <script>
+        // Initialize global game state
+        window.GameState = window.GameState || {
+            balance: 0,
+            demoMode: true,
+            currentUserId: null,
+            user: null,
+            settings: {
+                sound: true,
+                vibration: false,
+                language: 'en',
+                notifications: true
+            }
+        };
+        
+        // Load saved state
+        if (window.gameStorage) {
+            window.gameStorage.loadGameState().then(state => {
+                if (state) {
+                    window.GameState = { ...window.GameState, ...state };
+                }
+            });
+        }
+        
+        console.log('🎮 Game state initialized:', window.GameState);
+    </script>
+</body>
+</html>

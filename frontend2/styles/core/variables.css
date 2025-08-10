@@ -1,0 +1,47 @@
+/* === CSS VARIABLES === */
+:root {
+    /* Colors */
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+    --bg-card: #2a2a2a;
+    --accent-yellow: #FFD700;
+    --accent-orange: #FF8C00;
+    --accent-green: #00ff87;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #888888;
+    
+    /* Border Radius */
+    --border-radius: 12px;
+    --border-radius-small: 8px;
+    --border-radius-large: 20px;
+    
+    /* Shadows */
+    --shadow-card: 0 4px 12px rgba(0,0,0,0.4);
+    --shadow-button: 0 2px 8px rgba(255, 215, 0, 0.3);
+    --shadow-button-hover: 0 6px 25px rgba(255, 215, 0, 0.6);
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+    
+    /* Z-indexes */
+    --z-header: 100;
+    --z-modal: 1000;
+    --z-notification: 1001;
+    --z-tooltip: 1002;
+    
+    /* Spacing */
+    --space-xs: 4px;
+    --space-sm: 8px;
+    --space-md: 12px;
+    --space-lg: 20px;
+    --space-xl: 30px;
+    --space-xxl: 40px;
+    
+    /* Container sizes */
+    --container-max-width: 400px;
+    --header-height: 80px;
+    --bottom-nav-height: 100px;
+}

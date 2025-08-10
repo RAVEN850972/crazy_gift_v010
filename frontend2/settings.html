@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - CrazyGift</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="styles/core/variables.css">
+    <link rel="stylesheet" href="styles/core/base.css">
+    <link rel="stylesheet" href="styles/core/layout.css">
+    
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/modals.css">
+    <link rel="stylesheet" href="styles/components/forms.css">
+    <link rel="stylesheet" href="styles/components/notifications.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="styles/pages/settings.css">
+    
+    <!-- Preload assets -->
+    <link rel="preload" href="assets/icons/arrow_left.svg" as="image">
+    <link rel="preload" href="assets/flags/en.png" as="image">
+</head>
+<body class="settings-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo">
+            <img src="assets/icons/arrow_left.svg" alt="Back" onclick="window.Utils.URL.navigateTo('profile.html')">
+        </div>
+        
+        <div class="page-title">Settings</div>
+        
+        <div style="width: 40px;"></div> <!-- Spacer -->
+    </header>
+
+    <!-- Main Content -->
+    <main class="settings-container">
+        <!-- General Settings -->
+        <section class="settings-section">
+            <h2 class="settings-section-title">General</h2>
+            
+            <div class="settings-group">
+                <div class="settings-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/sound.svg" alt="Sound" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Sound Effects</div>
+                            <div class="settings-item-description">Enable sound effects for interactions</div>
+                        </div>
+                    </div>
+                    <button class="settings-toggle active" data-setting="sound">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/check.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/vibration.svg" alt="Vibration" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Haptic Feedback</div>
+                            <div class="settings-item-description">Feel button presses and interactions</div>
+                        </div>
+                    </div>
+                    <button class="settings-toggle" data-setting="vibration">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/vibration.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="settings-item clickable language-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/language.svg" alt="Language" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Language</div>
+                            <div class="settings-item-description">Choose your preferred language</div>
+                        </div>
+                    </div>
+                    <div class="language-selector">
+                        <img src="assets/flags/en.png" alt="English" class="current-language-flag">
+                        <span class="current-language-name language-value">English</span>
+                        <img src="assets/icons/arrow_right.svg" alt="" class="language-arrow">
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/sync.svg" alt="Auto Sync" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Auto Sync</div>
+                            <div class="settings-item-description">Automatically sync data with cloud</div>
+                        </div>
+                    </div>
+                    <button class="settings-toggle active" data-setting="autoSync">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/cloud.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Notifications -->
+        <section class="settings-section">
+            <h2 class="settings-section-title">Notifications</h2>
+            <p class="settings-section-subtitle">Choose which notifications you want to receive</p>
+            
+            <div class="notification-preferences">
+                <div class="notification-item">
+                    <div class="notification-item-info">
+                        <div class="notification-item-title">Push Notifications</div>
+                        <div class="notification-item-desc">Receive notifications from the app</div>
+                    </div>
+                    <button class="settings-toggle active" data-notification="notifications">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/bell.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-item-info">
+                        <div class="notification-item-title">New Cases</div>
+                        <div class="notification-item-desc">Get notified about new case releases</div>
+                    </div>
+                    <button class="settings-toggle active" data-notification="caseUpdates">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/box.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-item-info">
+                        <div class="notification-item-title">Prize Alerts</div>
+                        <div class="notification-item-desc">Get notified about special prizes</div>
+                    </div>
+                    <button class="settings-toggle active" data-notification="prizeAlerts">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/gift.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="notification-item">
+                    <div class="notification-item-info">
+                        <div class="notification-item-title">Referral Updates</div>
+                        <div class="notification-item-desc">Updates about your referral program</div>
+                    </div>
+                    <button class="settings-toggle active" data-notification="referralNews">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/users.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Privacy -->
+        <section class="settings-section">
+            <h2 class="settings-section-title">Privacy & Data</h2>
+            
+            <div class="privacy-settings">
+                <div class="privacy-warning">
+                    <img src="assets/icons/shield.svg" alt="Privacy" class="privacy-warning-icon">
+                    <div class="privacy-warning-text">
+                        Your privacy is important to us. These settings control how your data is used.
+                    </div>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/stats.svg" alt="Share Stats" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Share Statistics</div>
+                            <div class="settings-item-description">Allow sharing your stats with friends</div>
+                        </div>
+                    </div>
+                    <button class="settings-toggle active" data-privacy="shareStats">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/share.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+
+                <div class="settings-item">
+                    <div class="settings-item-content">
+                        <img src="assets/icons/analytics.svg" alt="Analytics" class="settings-item-icon">
+                        <div class="settings-item-info">
+                            <div class="settings-item-label">Analytics</div>
+                            <div class="settings-item-description">Help improve the app with usage data</div>
+                        </div>
+                    </div>
+                    <button class="settings-toggle active" data-privacy="allowAnalytics">
+                        <div class="settings-toggle-slider">
+                            <img src="assets/icons/chart.svg" alt="" class="settings-toggle-icon">
+                        </div>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Support -->
+        <section class="support-section">
+            <div class="support-title">Need Help?</div>
+            <div class="support-description">Get support or share feedback with our team</div>
+            
+            <div class="support-buttons">
+                <button class="support-btn feedback-btn">
+                    <img src="assets/icons/message.svg" alt="Feedback" class="support-btn-icon">
+                    Feedback
+                </button>
+                <button class="support-btn support-btn">
+                    <img src="assets/icons/help.svg" alt="Support" class="support-btn-icon">
+                    Support
+                </button>
+            </div>
+        </section>
+
+        <!-- Account Management -->
+        <section class="account-section">
+            <h2 class="settings-section-title">Account</h2>
+            
+            <div class="account-info">
+                <div class="account-field">
+                    <span class="account-field-label">User ID</span>
+                    <span class="account-field-value">demo_user</span>
+                </div>
+                <div class="account-field">
+                    <span class="account-field-label">App Version</span>
+                    <span class="account-field-value">1.0.0 Beta</span>
+                </div>
+                <div class="account-field telegram-info">
+                    <span class="account-field-label">Telegram Version</span>
+                    <span class="account-field-value">-</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Danger Zone -->
+        <section class="danger-zone">
+            <div class="danger-zone-title">Danger Zone</div>
+            <div class="danger-zone-description">
+                These actions cannot be undone. Please be careful.
+            </div>
+            
+            <div class="danger-actions">
+                <button class="danger-btn clear-cache-btn">
+                    <img src="assets/icons/trash.svg" alt="Clear" class="danger-btn-icon">
+                    Clear Cache
+                </button>
+                
+                <button class="danger-btn export-data-btn">
+                    <img src="assets/icons/download.svg" alt="Export" class="danger-btn-icon">
+                    Export Data
+                </button>
+                
+                <button class="danger-btn reset-settings-btn">
+                    <img src="assets/icons/refresh.svg" alt="Reset" class="danger-btn-icon">
+                    Reset Settings
+                </button>
+            </div>
+        </section>
+
+        <!-- About -->
+        <section class="about-section">
+            <div class="app-logo-large">
+                <img src="assets/icons/triangle_icon.svg" alt="CrazyGift">
+            </div>
+            
+            <div class="app-name">CrazyGift</div>
+            <div class="app-version">Version 1.0.0 Beta</div>
+            <div class="app-description">
+                The ultimate Telegram gift case experience with crypto rewards and instant prizes.
+            </div>
+            
+            <div class="app-links">
+                <a href="#" class="app-link">Privacy Policy</a>
+                <a href="#" class="app-link">Terms of Service</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Core JavaScript -->
+    <script src="js/core/api-client.js"></script>
+    <script src="js/core/telegram-app.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/notifications.js"></script>
+    <script src="js/core/haptic.js"></script>
+    
+    <!-- Utility JavaScript -->
+    <script src="js/utils/helpers.js"></script>
+    
+    <!-- Component JavaScript -->
+    <script src="js/components/modal.js"></script>
+    
+    <!-- Legacy scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    <script src="js/vibration-guard.js"></script>
+    <script src="js/telegram-version-manager.js"></script>
+    <script src="js/clean-console-init.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script src="js/pages/settings.js"></script>
+    
+    <!-- Initialize global game state -->
+    <script>
+        // Initialize global game state
+        window.GameState = window.GameState || {
+            balance: 0,
+            demoMode: true,
+            currentUserId: null,
+            user: null,
+            settings: {
+                sound: true,
+                vibration: false,
+                language: 'en',
+                notifications: true,
+                autoSync: true,
+                caseUpdates: true,
+                prizeAlerts: true,
+                referralNews: true,
+                shareStats: true,
+                allowAnalytics: true
+            }
+        };
+        
+        // Load saved state
+        if (window.gameStorage) {
+            window.gameStorage.loadGameState().then(state => {
+                if (state) {
+                    window.GameState = { ...window.GameState, ...state };
+                }
+            });
+        }
+    </script>
+</body>
+</html>

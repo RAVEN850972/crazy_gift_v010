@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balance - CrazyGift</title>
+    
+    <!-- Core CSS -->
+    <link rel="stylesheet" href="styles/core/variables.css">
+    <link rel="stylesheet" href="styles/core/base.css">
+    <link rel="stylesheet" href="styles/core/layout.css">
+    
+    <!-- Component CSS -->
+    <link rel="stylesheet" href="styles/components/buttons.css">
+    <link rel="stylesheet" href="styles/components/modals.css">
+    <link rel="stylesheet" href="styles/components/forms.css">
+    <link rel="stylesheet" href="styles/components/notifications.css">
+    
+    <!-- Page-specific CSS -->
+    <link rel="stylesheet" href="styles/pages/balance.css">
+    
+    <!-- Preload assets -->
+    <link rel="preload" href="assets/icons/star.svg" as="image">
+    <link rel="preload" href="assets/icons/ton.svg" as="image">
+</head>
+<body class="balance-page">
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo">
+            <img src="assets/icons/arrow_left.svg" alt="Back" onclick="window.Utils.URL.navigateTo('index.html')">
+        </div>
+        
+        <div class="page-title">Balance</div>
+        
+        <div style="width: 40px;"></div> <!-- Spacer -->
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Current Balance Section -->
+        <section class="current-balance-section">
+            <div class="current-balance-label">Current Balance</div>
+            <div class="current-balance-amount">0</div>
+            <div class="balance-usd-equivalent">≈ $0.00</div>
+        </section>
+
+        <!-- Payment Methods Section -->
+        <section class="payment-methods-section">
+            <h2 class="section-title">Choose Payment Method</h2>
+            
+            <div class="payment-methods-grid">
+                <button class="payment-method stars" data-method="stars">
+                    <img src="assets/icons/star.svg" alt="Telegram Stars" class="payment-method-icon">
+                    <div class="payment-method-name">Telegram Stars</div>
+                    <div class="payment-method-desc">Fast & Easy</div>
+                </button>
+                
+                <button class="payment-method ton" data-method="ton">
+                    <img src="assets/icons/ton.svg" alt="TON" class="payment-method-icon">
+                    <div class="payment-method-name">TON Wallet</div>
+                    <div class="payment-method-desc">Crypto Payment</div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Amount Input Section -->
+        <section class="amount-input-section">
+            <div class="amount-input-wrapper">
+                <label class="amount-label">Enter Amount</label>
+                <div class="amount-input-container">
+                    <input type="number" class="amount-input" placeholder="0" min="1" max="10000">
+                    <span class="amount-currency">💎</span>
+                </div>
+            </div>
+            
+            <!-- Quick Amount Buttons -->
+            <div class="quick-amounts">
+                <button class="quick-amount-btn" data-amount="100">
+                    <div class="quick-amount-value">100</div>
+                    <div class="quick-amount-label">STARTER</div>
+                </button>
+                <button class="quick-amount-btn" data-amount="500">
+                    <div class="quick-amount-value">500</div>
+                    <div class="quick-amount-label">POPULAR</div>
+                </button>
+                <button class="quick-amount-btn" data-amount="1000">
+                    <div class="quick-amount-value">1000</div>
+                    <div class="quick-amount-label">BEST VALUE</div>
+                </button>
+            </div>
+            
+            <!-- Conversion Info -->
+            <div class="conversion-info" style="display: none;">
+                <div class="conversion-rate">Rate: 1 💎 = $0.02</div>
+                <div class="conversion-amount">0 ⭐ Telegram Stars</div>
+            </div>
+        </section>
+
+        <!-- Deposit Button -->
+        <section class="deposit-section">
+            <button class="deposit-button" disabled>
+                <span>Choose amount to deposit</span>
+                <img src="assets/icons/arrow_right.svg" alt="" class="deposit-button-icon">
+            </button>
+        </section>
+
+        <!-- Deposit History Section -->
+        <section class="deposit-history-section">
+            <div class="deposit-history-header">
+                <h3 class="deposit-history-title">Recent Deposits</h3>
+                <button class="view-all-btn">View All</button>
+            </div>
+            
+            <div class="deposit-history-list">
+                <!-- Will be populated by JavaScript -->
+            </div>
+            
+            <!-- Empty State -->
+            <div class="deposit-history-empty">
+                <img src="assets/icons/history.svg" alt="" class="deposit-history-empty-icon">
+                <div class="deposit-history-empty-text">No deposits yet</div>
+                <div class="deposit-history-empty-subtitle">Your deposit history will appear here</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Core JavaScript -->
+    <script src="js/core/api-client.js"></script>
+    <script src="js/core/telegram-app.js"></script>
+    <script src="js/core/storage.js"></script>
+    <script src="js/core/notifications.js"></script>
+    <script src="js/core/haptic.js"></script>
+    
+    <!-- Utility JavaScript -->
+    <script src="js/utils/helpers.js"></script>
+    
+    <!-- Component JavaScript -->
+    <script src="js/components/modal.js"></script>
+    
+    <!-- TON Connect integration -->
+    <script src="js/ton-connect.js"></script>
+    
+    <!-- Legacy scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    <script src="js/vibration-guard.js"></script>
+    <script src="js/telegram-version-manager.js"></script>
+    <script src="js/clean-console-init.js"></script>
+    
+    <!-- Page-specific JavaScript -->
+    <script src="js/pages/balance.js"></script>
+    
+    <!-- Initialize global game state -->
+    <script>
+        // Initialize global game state
+        window.GameState = window.GameState || {
+            balance: 0,
+            demoMode: true,
+            currentUserId: null,
+            user: null,
+            settings: {
+                sound: true,
+                vibration: false,
+                language: 'en',
+                notifications: true
+            }
+        };
+        
+        // Load saved state
+        if (window.gameStorage) {
+            window.gameStorage.loadGameState().then(state => {
+                if (state) {
+                    window.GameState = { ...window.GameState, ...state };
+                }
+            });
+        }
+    </script>
+</body>
+</html>
