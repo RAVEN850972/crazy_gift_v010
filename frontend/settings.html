@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CrazyGift - Настройки</title>
+    
+    <!-- Telegram WebApp -->
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    
+    <!-- TON Connect UI -->
+    <script src="https://unpkg.com/@tonconnect/ui@latest/dist/tonconnect-ui.min.js"></script>
+    
+    <!-- Защита от преждевременной вибрации -->
+    <script src="js/vibration-guard.js"></script>
+    
+    <!-- Telegram WebApp compatibility -->
+    <script src="js/clean-console-init.js"></script>
+    <script src="js/telegram-version-manager.js"></script>
+    <script src="js/telegram-webapp-init.js"></script>
+    
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/settings/settings.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo" onclick="goBack()">
+            <img src="assets/icons/triangle_icon.png" alt="Back">
+        </div>
+        
+        <div class="balance-widget" onclick="window.location.href='balance.html'">
+            <img src="assets/icons/wallet_icon.png" alt="Stars" class="balance-icon">
+            <span class="balance-amount" id="balance">1451</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Settings Header -->
+        <section class="settings-header">
+            <h1 class="settings-title">Настройки</h1>
+        </section>
+
+        <!-- Promo Code Section -->
+        <section class="settings-section promo-section">
+            <div class="settings-item clickable" onclick="showPromoModal()">
+                <div class="settings-item-content">
+                    <span class="settings-item-title">Введите промокод</span>
+                </div>
+                <span class="settings-arrow">></span>
+            </div>
+        </section>
+
+        <!-- Invite Friends Section -->
+        <section class="settings-section invite-section">
+            <button class="invite-btn" onclick="inviteFriends()">
+                <img src="assets/icons/user_add_icon.png" alt="Invite" class="invite-icon">
+                <span>Пригласить друзей</span>
+            </button>
+            <button class="copy-btn" onclick="copyReferralLink()">
+                <img src="assets/icons/copy_icon.png" alt="Copy">
+            </button>
+        </section>
+
+        <!-- Referrals Section -->
+        <section class="settings-section">
+            <div class="settings-item clickable" onclick="window.location.href='referral.html'">
+                <div class="settings-item-content">
+                    <span class="settings-item-title">Рефералы</span>
+                </div>
+                <span class="settings-arrow">></span>
+            </div>
+            
+            <div class="referral-stats">
+                <div class="referral-stat-item">
+                    <img src="assets/icons/ref_icon.png" alt="Friends" class="stat-icon">
+                    <span class="stat-label">Друзей приглашено</span>
+                    <span class="stat-value">999</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wallet Section -->
+        <section class="settings-section">
+            <h3 class="section-title">Кошелек</h3>
+            <button class="wallet-btn" id="walletButton" onclick="connectWallet()">
+                <img src="assets/icons/ton_buy_icon.png" alt="TON" class="wallet-icon">
+                <span>Подключить кошелек</span>
+            </button>
+        </section>
+
+        <!-- Additional Settings -->
+        <section class="settings-section">
+            <h3 class="section-title">Доп. настройки</h3>
+            
+            <div class="settings-item clickable" onclick="showLanguageModal()">
+                <div class="settings-item-content">
+                    <img src="assets/icons/us_lang_icon.png" alt="English" class="language-flag">
+                    <div class="language-info">
+                        <span class="settings-item-title">English</span>
+                        <span class="settings-item-subtitle">English</span>
+                    </div>
+                </div>
+                <span class="settings-arrow">></span>
+            </div>
+            
+            <div class="settings-item">
+                <div class="settings-item-content">
+                    <span class="settings-item-title">Звук</span>
+                </div>
+                <div class="toggle-switch" onclick="toggleSound()">
+                    <div class="toggle-slider active" id="soundToggle"></div>
+                </div>
+            </div>
+            
+            <div class="settings-item">
+                <div class="settings-item-content">
+                    <span class="settings-item-title">Вибрация</span>
+                </div>
+                <div class="toggle-switch" onclick="toggleVibration()">
+                    <div class="toggle-slider" id="vibrationToggle"></div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Promo Code Modal -->
+    <div class="modal" id="promoModal">
+        <div class="modal-overlay" onclick="closePromoModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Введите промокод</h3>
+                <button class="modal-close" onclick="closePromoModal()">
+                    X
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="input-group">
+                    <input type="text" id="promoInput" placeholder="Введите промокод" maxlength="20">
+                </div>
+                <button class="modal-btn primary" onclick="applyPromoCode()">
+                    Применить
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Language Modal -->
+    <div class="modal" id="languageModal">
+        <div class="modal-overlay" onclick="closeLanguageModal()"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Выберите язык</h3>
+                <button class="modal-close" onclick="closeLanguageModal()">
+                    X
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="language-list">
+                    <div class="language-option active" onclick="selectLanguage('en')">
+                        <img src="assets/icons/us_lang_icon.png" alt="English" class="language-flag">
+                        <span>English</span>
+                        <img src="assets/icons/check_icon.png" alt="Selected" class="language-check">
+                    </div>
+                    <div class="language-option" onclick="selectLanguage('ru')">
+                        <img src="assets/icons/ru_lang_icon.png" alt="Русский" class="language-flag">
+                        <span>Русский</span>
+                        <img src="assets/icons/check_icon.png" alt="Selected" class="language-check">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="bottom-nav">
+        <div class="nav-container">
+            <a href="index.html" class="nav-item">
+                <img src="assets/icons/home_icon.png" alt="Home" class="nav-icon">
+                <span class="nav-text">Main</span>
+            </a>
+            <a href="inventory.html" class="nav-item">
+                <img src="assets/icons/upgrade_icon.png" alt="Inventory" class="nav-icon">
+                <span class="nav-text">Upgrade</span>
+            </a>
+            <a href="history.html" class="nav-item">
+                <img src="assets/icons/refferal_icon.png" alt="History" class="nav-icon">
+                <span class="nav-text">Partner</span>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    
+    <!-- API Infrastructure -->
+    <script src="js/game-state.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/api-detector.js"></script>
+    <script src="js/integration-wrapper.js"></script>
+    
+    <!-- Page Scripts -->
+    <script src="js/settings/settings.js"></script>
+</body>
+</html>

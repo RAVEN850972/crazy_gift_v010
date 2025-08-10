@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>CrazyGift - Пополнение баланса</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/balance/balance.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="app-logo" onclick="goBack()">
+            <img src="assets/icons/triangle_icon.png" alt="Back">
+        </div>
+        
+        <div class="balance-widget">
+            <img src="assets/icons/wallet_icon.png" alt="Stars" class="balance-icon">
+            <span class="balance-amount" id="balance">1451</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Header -->
+        <section class="page-header">
+            <h1 class="page-title">Депозит</h1>
+        </section>
+
+        <!-- Payment Method Selection -->
+        <section class="payment-methods-section">
+            <h3 class="section-subtitle">Выберите метод депозита</h3>
+            
+            <div class="payment-methods-grid">
+                <button class="payment-method-btn stars active" onclick="selectPaymentMethod('stars')">
+                    <div class="payment-method-content">
+                        <img src="assets/frames/stars_payment.png" alt="Stars" class="payment-icon">
+                    </div>
+                </button>
+                
+                <button class="payment-method-btn ton" onclick="selectPaymentMethod('ton')">
+                    <div class="payment-method-content">
+                        <img src="assets/frames/ton_payment.png" alt="TON" class="payment-icon">
+                    </div>
+                </button>
+            </div>
+        </section>
+
+        <!-- Amount Input Section -->
+        <section class="amount-input-section">
+            <div class="amount-input-wrapper">
+                <label class="amount-label">Введите сумму</label>
+                <div class="amount-input-container">
+                    <input type="number" id="amountInput" class="amount-input" placeholder="0" min="1" max="100000">
+                    <div class="amount-currency" id="currencySymbol">⭐</div>
+                </div>
+            </div>
+            
+            <button class="deposit-btn" id="depositBtn" onclick="processDeposit()">
+                <span>+</span>
+                <span>Пополнить</span>
+            </button>
+        </section>
+
+        <!-- Quick Top-up Section -->
+        <section class="quick-topup-section">
+            <h3 class="section-title">Пополнить в 1 клик</h3>
+            
+            <div class="quick-buttons-grid">
+                <!-- Stars Quick Buttons -->
+                <div class="quick-buttons-stars" id="starsButtons">
+                    <button class="quick-btn stars-btn" onclick="quickTopup(100, 'stars')">
+                        <img src="assets/frames/stars_100.png" alt="100 Stars">
+                    </button>
+                    
+                    <button class="quick-btn stars-btn" onclick="quickTopup(500, 'stars')">
+                        <img src="assets/frames/stars_500.png" alt="500 Stars">
+                    </button>
+                    
+                    <button class="quick-btn stars-btn" onclick="quickTopup(1500, 'stars')">
+                        <img src="assets/frames/stars_1500.png" alt="1500 Stars">
+                    </button>
+                    
+                    <button class="quick-btn stars-btn" onclick="quickTopup(4500, 'stars')">
+                        <img src="assets/frames/stars_4500.png" alt="4500 Stars">
+                    </button>
+                </div>
+
+                <!-- TON Quick Buttons -->
+                <div class="quick-buttons-ton" id="tonButtons" style="display: none;">
+                    <button class="quick-btn ton-btn" onclick="quickTopup(10, 'ton')">
+                        <img src="assets/frames/ton_10.png" alt="10 TON">
+                    </button>
+                    
+                    <button class="quick-btn ton-btn" onclick="quickTopup(25, 'ton')">
+                        <img src="assets/frames/ton_25.png" alt="25 TON">
+                    </button>
+                    
+                    <button class="quick-btn ton-btn" onclick="quickTopup(50, 'ton')">
+                        <img src="assets/frames/ton_10.png" alt="50 TON">
+                    </button>
+                    
+                    <button class="quick-btn ton-btn" onclick="quickTopup(100, 'ton')">
+                        <img src="assets/frames/ton_25.png" alt="100 TON">
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Loading Modal -->
+    <div class="loading-modal" id="loadingModal">
+        <div class="loading-modal-overlay"></div>
+        <div class="loading-content">
+            <div class="loading-spinner"></div>
+            <h3>Обработка платежа...</h3>
+            <p>Пожалуйста, подождите</p>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div class="result-modal" id="successModal">
+        <div class="result-modal-overlay"></div>
+        <div class="result-content success">
+            <div class="result-icon">
+                <img src="assets/icons/check_icon.png" alt="Success">
+            </div>
+            <h3>Пополнение успешно!</h3>
+            <p id="successMessage">Ваш баланс пополнен на 100 звёзд</p>
+            <button class="result-btn" onclick="closeResultModal()">Отлично!</button>
+        </div>
+    </div>
+
+    <!-- Error Modal -->
+    <div class="result-modal" id="errorModal">
+        <div class="result-modal-overlay"></div>
+        <div class="result-content error">
+            <div class="result-icon">
+                <img src="assets/icons/close_icon.png" alt="Error">
+            </div>
+            <h3>Ошибка платежа</h3>
+            <p id="errorMessage">Произошла ошибка при обработке платежа</p>
+            <button class="result-btn" onclick="closeResultModal()">Понятно</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/telegram-webapp-init.js"></script>
+    
+    <!-- API Infrastructure -->
+    <script src="js/game-state.js"></script>
+    <script src="js/api-client.js"></script>
+    <script src="js/api-detector.js"></script>
+    <script src="js/integration-wrapper.js"></script>
+    
+    <!-- Page Scripts -->
+    <script src="js/balance/balance.js"></script>
+</body>
+</html>

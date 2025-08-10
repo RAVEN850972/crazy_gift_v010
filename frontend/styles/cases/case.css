@@ -1,0 +1,684 @@
+/* === CASE HEADER === */
+.case-header {
+    text-align: center;
+}
+
+.case-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--accent-yellow);
+}
+
+/* === ROULETTE SECTION === */
+.roulette-section {
+    border-radius: var(--border-radius);
+    padding: 20px 0;
+    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.roulette-container {
+    position: relative;
+    height: 200px;
+    overflow: visible;
+    border-radius: var(--border-radius-small);
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+}
+
+.roulette-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 100%;
+    background: linear-gradient(to left, rgba(0,0,0,0.9), transparent);
+    z-index: 15;
+    pointer-events: none;
+}
+
+.roulette-line {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    transition: transform 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+    will-change: transform;
+    padding: 0 100px;
+    transform: translateX(-200px);
+}
+
+.roulette-item {
+    flex-shrink: 0;
+    width: 130px;
+    height: 130px;
+    margin: 0 10px;
+    background: #111111;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.roulette-item.common {
+    border-color: #ffffff;
+}
+
+.roulette-item.rare {
+    border-color: #3b82f6;
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+}
+
+.roulette-item.epic {
+    border-color: #8b5cf6;
+    box-shadow: 0 0 10px rgba(139, 92, 246, 0.3);
+}
+
+.roulette-item.legendary {
+    border-color: #f59e0b;
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.3);
+}
+
+.roulette-item.mythic {
+    border-color: #ef4444;
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.3);
+}
+
+.roulette-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 10px;
+}
+
+.roulette-item-ton {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+}
+
+.roulette-item-stars {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+    line-height: 1;
+}
+
+.roulette-item-ton img,
+.roulette-item-stars img {
+    width: 12px;
+    height: 12px;
+    flex-shrink: 0;
+    margin-bottom: 0;
+}
+
+/* === ROULETTE POINTER === */
+.roulette-pointer {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 20;
+    pointer-events: none;
+    width: 33.33%;
+    height: 100%;
+}
+
+.pointer-line {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pointer-line::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-yellow);
+}
+
+.pointer-line::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--accent-yellow);
+}
+
+.pointer-arrow {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 10px solid var(--accent-yellow);
+}
+
+.pointer-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -190px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-bottom: 10px solid var(--accent-yellow);
+}
+
+/* === DEMO MODE INDICATOR === */
+.demo-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-muted);
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+/* === OPEN BUTTON === */
+.open-button {
+    width: 100%;
+    background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+    color: var(--bg-primary);
+    border: none;
+    padding: 16px;
+    border-radius: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-button);
+}
+
+.open-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+}
+
+.open-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* === CASE CONTENTS === */
+.case-contents {
+    padding: 20px;
+    margin-bottom: 30px;
+}
+
+.contents-title {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contents-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+}
+
+.content-item {
+    background: #111111;
+    border-radius: 15px;
+    padding: 12px;
+    text-align: center;
+    position: relative; /* Добавить */
+}
+
+.content-item.common {
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.content-item.rare {
+    border-color: rgba(59, 130, 246, 0.3);
+}
+
+.content-item.epic {
+    border-color: rgba(139, 92, 246, 0.3);
+}
+
+.content-item.legendary {
+    border-color: rgba(245, 158, 11, 0.3);
+}
+
+.content-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.content-item-ton {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 8px;
+    border-radius: 16px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.content-item-stars {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    background: rgba(0, 0, 0, 0.6);
+    padding: 4px 6px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 600;
+    color: white;
+}
+
+.content-item-ton img,
+.content-item-stars img {
+    width: 12px;
+    height: 12px;
+    margin-bottom: 0;
+}
+
+/* === PRIZE MODAL === */
+.prize-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 200;
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.prize-modal.show {
+    display: flex;
+    opacity: 1;
+}
+
+.prize-modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+}
+
+.prize-content {
+    position: relative;
+    background: #111111;
+    border-radius: 20px 20px 0 0;
+    width: 100%;
+    min-height: 65vh;
+    overflow: hidden;
+    transform: translateY(100%);
+    transition: transform 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    border: 1px solid rgba(255, 215, 0, 0.2);
+    box-shadow: 
+        0 -10px 40px rgba(0, 0, 0, 0.6),
+        0 0 30px rgba(255, 215, 0, 0.1);
+}
+
+.prize-modal.show .prize-content {
+    transform: translateY(0);
+}
+
+/* === PRIZE HEADER === */
+.prize-header {
+    padding: 30px 20px 15px;
+    text-align: center;
+}
+
+.case-name {
+    font-size: 24px;
+    color: var(--accent-yellow);
+    margin-bottom: 16px;
+    font-weight: 500;
+}
+
+.congrats-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #ffffff;
+    margin-bottom: 0;
+}
+
+/* === PRIZE MAIN === */
+.prize-main {
+    padding: 0px 30px 40px;
+    text-align: center;
+}
+
+.prize-image-container {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 40px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.prize-image {
+    position: relative;
+    z-index: 2;
+    width: 140px;
+    height: 140px;
+    object-fit: contain;
+    filter: none;
+}
+
+.prize-values-overlay {
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: 3;
+    border-radius: 30px;
+    background: rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid #696969;
+}
+
+.prize-value-ton,
+.prize-value-stars {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent-yellow);
+}
+
+.value-icon-small {
+    width: 16px;
+    height: 16px;
+}
+
+.prize-info {
+    margin-bottom: 0;
+}
+
+.prize-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 15px;
+}
+
+.prize-rarity {
+    display: inline-block;
+    padding: 10px 24px;
+    background: rgba(255, 255, 255, 0.1);
+    color: #cccccc;
+    font-size: 16px;
+    border-radius: 25px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* === PRIZE ACTIONS === */
+.prize-actions {
+    padding: 0 30px 50px;
+    text-align: center;
+}
+
+.prize-btn {
+    border: none;
+    border-radius: 15px;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+}
+
+.prize-btn-primary {
+    width: 100%;
+    padding: 20px;
+    background: linear-gradient(135deg, var(--accent-yellow), var(--accent-orange));
+    color: #000000;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 20px rgba(255, 215, 0, 0.4);
+    font-size: 20px;
+}
+
+.prize-btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 25px rgba(255, 215, 0, 0.6);
+}
+
+.prize-actions-secondary {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+}
+
+.prize-btn-secondary {
+    flex: 1;
+    max-width: 150px;
+    padding: 16px 20px;
+    background: transparent;
+    color: #cccccc;
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    font-size: 16px;
+}
+
+.prize-btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+/* === RARITY COLORS === */
+.prize-rarity.common {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    color: #ffffff;
+}
+
+.prize-rarity.rare {
+    background: rgba(59, 130, 246, 0.2);
+    border-color: rgba(59, 130, 246, 0.5);
+    color: #3b82f6;
+}
+
+.prize-rarity.epic {
+    background: rgba(139, 92, 246, 0.2);
+    border-color: rgba(139, 92, 246, 0.5);
+    color: #8b5cf6;
+}
+
+.prize-rarity.legendary {
+    background: rgba(245, 158, 11, 0.2);
+    border-color: rgba(245, 158, 11, 0.5);
+    color: #f59e0b;
+}
+
+.prize-rarity.mythic {
+    background: rgba(239, 68, 68, 0.2);
+    border-color: rgba(239, 68, 68, 0.5);
+    color: #ef4444;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeIn {
+    from { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+@keyframes spin {
+    from { transform: translateX(0); }
+    to { transform: translateX(-2000px); }
+}
+
+@keyframes glow {
+    0%, 100% { 
+        box-shadow: 0 0 20px currentColor;
+    }
+    50% { 
+        box-shadow: 0 0 40px currentColor, 0 0 60px currentColor;
+    }
+}
+
+.spinning {
+    animation: spin 3s cubic-bezier(0.25, 0.1, 0.25, 1);
+}
+
+.winner-glow {
+    animation: glow 1s ease-in-out infinite;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 375px) {
+    .main-content {
+        padding: 15px;
+    }
+    
+    .roulette-section {
+        padding: 15px;
+    }
+
+    .case-contents {
+        padding: 15px;
+    }
+
+    .contents-grid {
+        gap: 10px;
+    }
+
+    .roulette-item {
+        width: 140px;
+        height: 140px;
+    }
+
+    .roulette-item img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .prize-main {
+        padding: 30px 20px 30px;
+    }
+    
+    .prize-image-container {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 30px;
+    }
+    
+    .prize-image {
+        width: 120px;
+        height: 120px;
+    }
+    
+    .prize-values-overlay {
+        bottom: 12px;
+        left: 12px;
+        right: 12px;
+    }
+    
+    .prize-value-ton,
+    .prize-value-stars {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+    
+    .value-icon-small {
+        width: 14px;
+        height: 14px;
+    }
+    
+    .prize-name {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .prize-rarity {
+        padding: 8px 20px;
+        font-size: 14px;
+    }
+    
+    .prize-actions {
+        padding: 0 20px 40px;
+    }
+    
+    .prize-btn-primary {
+        font-size: 18px;
+        padding: 18px;
+        margin-bottom: 15px;
+    }
+    
+    .prize-btn-secondary {
+        font-size: 14px;
+        padding: 14px 16px;
+        max-width: 120px;
+    }
+    
+    .prize-actions-secondary {
+        gap: 12px;
+    }
+}
