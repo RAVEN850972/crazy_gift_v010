@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Telegram Mini App + TON Wallet</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      background: #f0f0f0;
+    }
+    h1 {
+      color: #333;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+      border: none;
+      border-radius: 5px;
+      background-color: #0078d4;
+      color: white;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+    #wallet-info {
+      margin-top: 20px;
+      word-break: break-all;
+    }
+  </style>
+</head>
+<body>
+
+  <h1 id="username">Привет, гость!</h1>
+  <button id="connectWalletBtn">Подключить TON Wallet</button>
+  <div id="wallet-info"></div>
+
+  <script src="https://telegram.org/js/telegram-web-app.js"></script>
+  <script>
+    const tg = window.Telegram.WebApp;
+
+    // Показать имя пользователя
+    tg.onEvent('mainButtonClicked', () => {
+      alert("Main button clicked!");
+    });
+
+    const usernameEl = document.getElementById('username');
+    if (tg.initDataUnsafe && tg.initDataUnsafe.user) {
+      usernameEl.textContent = `Привет, ${tg.initDataUnsafe.user.first_name}!`;
+    }
+
+    // TON Wallet
+    const connectWalletBtn = document.getElementById('connectWalletBtn');
+    const walletInfo = document.getElementById('wallet-info');
+
+    connectWalletBtn.addEventListener('click', async () => {
+      if (!window.ton) {
+        alert("TON Wallet не найден. Установите расширение или приложение TON Wallet.");
+        return;
+      }
+
+      try {
+        const wallet = await window.ton.request({
+          method: "ton_requestAccounts"
+        });
+        walletInfo.textContent = `Ваш кошелек: ${wallet[0]}`;
+      } catch (err) {
+        walletInfo.textContent = "Ошибка подключения кошелька: " + err.message;
+      }
+    });
+  </script>
+
+</body>
+</html>
