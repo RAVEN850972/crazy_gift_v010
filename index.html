@@ -207,8 +207,245 @@
             transition: all 0.3s ease;
         }
 
-        .deposit-button:hover {
+        .deposit-screen {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .back-button {
+            background: none;
+            border: none;
+            color: var(--tg-theme-button-color, #2481cc);
+            font-size: 16px;
+            padding: 15px 20px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            opacity: 0.7;
+        }
+
+        .deposit-header {
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .deposit-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .deposit-subtitle {
+            font-size: 16px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .current-balance {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            margin: 0 20px 30px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .current-balance-label {
+            font-size: 14px;
+            color: var(--tg-theme-hint-color, #999999);
+            margin-bottom: 8px;
+        }
+
+        .current-balance-amount {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .deposit-amounts {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .amounts-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .amounts-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .amount-card {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .amount-card:hover {
+            border-color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .amount-card.selected {
+            border-color: var(--tg-theme-button-color, #2481cc);
+            background: rgba(36, 129, 204, 0.1);
+        }
+
+        .amount-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--tg-theme-text-color, #000000);
+            margin-bottom: 5px;
+        }
+
+        .amount-stars {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .custom-amount {
+            margin-top: 15px;
+        }
+
+        .custom-amount-label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .custom-amount-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border-radius: 12px;
+            font-size: 16px;
+            background: var(--tg-theme-bg-color, #ffffff);
+            color: var(--tg-theme-text-color, #000000);
+            outline: none;
+        }
+
+        .custom-amount-input:focus {
+            border-color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .payment-methods {
+            padding: 0 20px;
+            margin-bottom: 30px;
+        }
+
+        .payment-methods-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .payment-method {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border: 2px solid transparent;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .payment-method:hover {
+            border-color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .payment-method.selected {
+            border-color: var(--tg-theme-button-color, #2481cc);
+            background: rgba(36, 129, 204, 0.1);
+        }
+
+        .payment-method-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .payment-method-info {
+            flex: 1;
+        }
+
+        .payment-method-name {
+            font-size: 16px;
+            font-weight: 600;
+            color: var(--tg-theme-text-color, #000000);
+            margin-bottom: 2px;
+        }
+
+        .payment-method-desc {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .deposit-summary {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            margin: 0 20px 20px;
+            padding: 20px;
+            border-radius: 15px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .summary-row:last-child {
+            margin-bottom: 0;
+            padding-top: 10px;
+            border-top: 1px solid var(--tg-theme-hint-color, #999999);
+            font-weight: bold;
+        }
+
+        .confirm-deposit-button {
+            background: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            width: calc(100% - 40px);
+            margin: 0 20px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .confirm-deposit-button:hover {
             opacity: 0.8;
+        }
+
+        .confirm-deposit-button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
         }
 
         .logo {
@@ -378,8 +615,103 @@
             </div>
         </div>
 
-        <button class="deposit-button" onclick="depositFunds()">
+        <button class="deposit-button" onclick="showDepositScreen()">
             💰 Пополнить баланс
+        </button>
+    </div>
+
+    <div id="depositScreen" class="deposit-screen">
+        <button class="back-button" onclick="showMainScreen()">
+            ← Назад
+        </button>
+
+        <div class="deposit-header">
+            <h1 class="deposit-title">Пополнение баланса</h1>
+            <p class="deposit-subtitle">Выберите сумму и способ оплаты</p>
+        </div>
+
+        <div class="current-balance">
+            <div class="current-balance-label">Текущий баланс</div>
+            <div class="current-balance-amount" id="currentBalanceDeposit">0.00 ⭐</div>
+        </div>
+
+        <div class="deposit-amounts">
+            <h3 class="amounts-title">Выберите сумму</h3>
+            <div class="amounts-grid">
+                <div class="amount-card" onclick="selectAmount(50)">
+                    <div class="amount-value">50</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+                <div class="amount-card" onclick="selectAmount(100)">
+                    <div class="amount-value">100</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+                <div class="amount-card" onclick="selectAmount(250)">
+                    <div class="amount-value">250</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+                <div class="amount-card" onclick="selectAmount(500)">
+                    <div class="amount-value">500</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+                <div class="amount-card" onclick="selectAmount(1000)">
+                    <div class="amount-value">1000</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+                <div class="amount-card" onclick="selectAmount(2500)">
+                    <div class="amount-value">2500</div>
+                    <div class="amount-stars">⭐ Stars</div>
+                </div>
+            </div>
+
+            <div class="custom-amount">
+                <div class="custom-amount-label">Или введите свою сумму</div>
+                <input type="number" 
+                       class="custom-amount-input" 
+                       id="customAmountInput"
+                       placeholder="Введите сумму в Stars"
+                       min="1"
+                       oninput="selectCustomAmount()">
+            </div>
+        </div>
+
+        <div class="payment-methods">
+            <h3 class="payment-methods-title">Способ оплаты</h3>
+            
+            <div class="payment-method selected" onclick="selectPaymentMethod('telegram_stars')">
+                <div class="payment-method-icon" style="background: linear-gradient(135deg, #667eea, #764ba2);">⭐</div>
+                <div class="payment-method-info">
+                    <div class="payment-method-name">Telegram Stars</div>
+                    <div class="payment-method-desc">Оплата через Telegram Stars</div>
+                </div>
+            </div>
+
+            <div class="payment-method" onclick="selectPaymentMethod('ton')">
+                <div class="payment-method-icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe);">💎</div>
+                <div class="payment-method-info">
+                    <div class="payment-method-name">TON Blockchain</div>
+                    <div class="payment-method-desc">Оплата через TON криптокошелек</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="deposit-summary">
+            <div class="summary-row">
+                <span>Сумма пополнения:</span>
+                <span id="summaryAmount">0 ⭐</span>
+            </div>
+            <div class="summary-row">
+                <span>Комиссия:</span>
+                <span id="summaryFee">0 ⭐</span>
+            </div>
+            <div class="summary-row">
+                <span>К доплате:</span>
+                <span id="summaryTotal">0 ⭐</span>
+            </div>
+        </div>
+
+        <button class="confirm-deposit-button" id="confirmDepositButton" onclick="confirmDeposit()" disabled>
+            Пополнить баланс
         </button>
     </div>
 
@@ -391,10 +723,11 @@
         tg.ready();
         tg.expand();
 
-        const API_BASE_URL = 'https://96c775a176167b7df1f94a38458694fd.serveo.net';
         // Глобальные переменные
         let currentUser = null;
         let availableCases = [];
+        let selectedAmount = 0;
+        let selectedPaymentMethod = 'telegram_stars';
 
         function updateAuthStatus(message) {
             document.getElementById('authStatus').textContent = message;
@@ -483,9 +816,10 @@
                 
                 // Переходим на главный экран через 2 секунды
                 setTimeout(() => {
+                    console.log('Переходим на главный экран...');
                     updateMainScreenData(userData);
                     loadCases();
-                    showMainScreen();
+                    showMainScreenFromAuth();
                 }, 2000);
 
                 // Сохраняем данные пользователя в localStorage для дальнейшего использования
@@ -511,9 +845,10 @@
                     
                     // Сразу переходим на главный экран
                     setTimeout(() => {
+                        console.log('Переходим на главный экран для сохраненного пользователя...');
                         updateMainScreenData(userData);
                         loadCases();
-                        showMainScreen();
+                        showMainScreenFromAuth();
                     }, 1000);
                 } catch (error) {
                     console.error('Ошибка при загрузке сохраненных данных:', error);
@@ -538,5 +873,3 @@
     </script>
 </body>
 </html>
-
-
