@@ -722,9 +722,7 @@
         // Настройка темы
         tg.ready();
         tg.expand();
-
         const API_BASE_URL = 'https://96c775a176167b7df1f94a38458694fd.serveo.net';
-        
         // Глобальные переменные
         let currentUser = null;
         let availableCases = [];
@@ -818,10 +816,9 @@
                 
                 // Переходим на главный экран через 2 секунды
                 setTimeout(() => {
-                    console.log('Переходим на главный экран...');
                     updateMainScreenData(userData);
                     loadCases();
-                    showMainScreenFromAuth();
+                    showMainScreen();
                 }, 2000);
 
                 // Сохраняем данные пользователя в localStorage для дальнейшего использования
@@ -847,10 +844,9 @@
                     
                     // Сразу переходим на главный экран
                     setTimeout(() => {
-                        console.log('Переходим на главный экран для сохраненного пользователя...');
                         updateMainScreenData(userData);
                         loadCases();
-                        showMainScreenFromAuth();
+                        showMainScreen();
                     }, 1000);
                 } catch (error) {
                     console.error('Ошибка при загрузке сохраненных данных:', error);
@@ -875,4 +871,3 @@
     </script>
 </body>
 </html>
-
