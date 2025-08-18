@@ -17,17 +17,198 @@
             background: var(--tg-theme-bg-color, #ffffff);
             color: var(--tg-theme-text-color, #000000);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
         }
 
         .container {
             max-width: 400px;
             width: 100%;
             text-align: center;
+            padding: 20px;
+        }
+
+        .auth-screen {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .main-screen {
+            display: none;
+            width: 100%;
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 0;
+        }
+
+        .header {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            padding: 20px;
+            border-radius: 0 0 20px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--tg-theme-button-color, #2481cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .user-details h2 {
+            font-size: 18px;
+            margin: 0;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .user-details p {
+            font-size: 14px;
+            margin: 5px 0 0 0;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .balance-section {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .balance-amount {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .balance-label {
+            font-size: 14px;
+            opacity: 0.8;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .stat-item {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            flex: 1;
+        }
+
+        .stat-value {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--tg-theme-text-color, #000000);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: var(--tg-theme-hint-color, #999999);
+        }
+
+        .cases-section {
+            padding: 0 20px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .case-card {
+            background: var(--tg-theme-secondary-bg-color, #f8f9fa);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .case-card:hover {
+            transform: translateY(-2px);
+            border-color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .case-image {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            background: linear-gradient(135deg, #ffd700, #ffed4e);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .case-name {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--tg-theme-text-color, #000000);
+        }
+
+        .case-price {
+            font-size: 16px;
+            font-weight: bold;
+            color: var(--tg-theme-button-color, #2481cc);
+        }
+
+        .case-gold .case-image { background: linear-gradient(135deg, #ffd700, #ffed4e); }
+        .case-pink .case-image { background: linear-gradient(135deg, #ff6b9d, #ffc3e1); }
+        .case-blue .case-image { background: linear-gradient(135deg, #4facfe, #00f2fe); }
+        .case-purple .case-image { background: linear-gradient(135deg, #a8edea, #fed6e3); }
+
+        .deposit-button {
+            background: var(--tg-theme-button-color, #2481cc);
+            color: var(--tg-theme-button-text-color, #ffffff);
+            border: none;
+            border-radius: 12px;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            width: 100%;
+            cursor: pointer;
+            margin: 0 20px 20px 20px;
+            transition: all 0.3s ease;
+        }
+
+        .deposit-button:hover {
+            opacity: 0.8;
         }
 
         .logo {
@@ -134,31 +315,72 @@
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="logo">🎰</div>
-        <h1>Telegram Roulette</h1>
-        <p class="subtitle">Открывай кейсы и выигрывай призы!</p>
-        
-        <button id="authButton" class="auth-button" onclick="authenticateUser()">
-            Войти в игру
+    <div id="authScreen" class="auth-screen">
+        <div class="container">
+            <div class="logo">🎰</div>
+            <h1>Telegram Roulette</h1>
+            <p class="subtitle">Открывай кейсы и выигрывай призы!</p>
+            
+            <div id="authStatus" class="auth-button" style="cursor: default;">
+                Авторизация...
+            </div>
+
+            <div id="loading" class="loading">
+                <div class="spinner"></div>
+                <span>Авторизация...</span>
+            </div>
+
+            <div id="error" class="error"></div>
+            <div id="success" class="success"></div>
+
+            <div id="userInfo" class="user-info">
+                <h3>Информация о пользователе:</h3>
+                <p><strong>Имя:</strong> <span id="userName"></span></p>
+                <p><strong>Username:</strong> <span id="userUsername"></span></p>
+                <p><strong>ID:</strong> <span id="userId"></span></p>
+                <p><strong>Баланс:</strong> <span id="userBalance"></span> ⭐</p>
+                <p><strong>Открыто кейсов:</strong> <span id="userCases"></span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="mainScreen" class="main-screen">
+        <div class="header">
+            <div class="profile-info">
+                <div class="user-avatar" id="userAvatarMain"></div>
+                <div class="user-details">
+                    <h2 id="userNameMain"></h2>
+                    <p id="userUsernameMain"></p>
+                </div>
+            </div>
+
+            <div class="balance-section">
+                <div class="balance-amount" id="userBalanceMain">0.00 ⭐</div>
+                <div class="balance-label">Ваш баланс</div>
+            </div>
+
+            <div class="stats">
+                <div class="stat-item">
+                    <div class="stat-value" id="userCasesMain">0</div>
+                    <div class="stat-label">Кейсов открыто</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value" id="userItemsMain">0</div>
+                    <div class="stat-label">Предметов</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cases-section">
+            <h2 class="section-title">Доступные кейсы</h2>
+            <div class="cases-grid" id="casesGrid">
+                <!-- Кейсы будут загружены динамически -->
+            </div>
+        </div>
+
+        <button class="deposit-button" onclick="depositFunds()">
+            💰 Пополнить баланс
         </button>
-
-        <div id="loading" class="loading">
-            <div class="spinner"></div>
-            <span>Авторизация...</span>
-        </div>
-
-        <div id="error" class="error"></div>
-        <div id="success" class="success"></div>
-
-        <div id="userInfo" class="user-info">
-            <h3>Информация о пользователе:</h3>
-            <p><strong>Имя:</strong> <span id="userName"></span></p>
-            <p><strong>Username:</strong> <span id="userUsername"></span></p>
-            <p><strong>ID:</strong> <span id="userId"></span></p>
-            <p><strong>Баланс:</strong> <span id="userBalance"></span> ⭐</p>
-            <p><strong>Открыто кейсов:</strong> <span id="userCases"></span></p>
-        </div>
     </div>
 
     <script>
@@ -169,18 +391,22 @@
         tg.ready();
         tg.expand();
 
-        // API базовый URL (замените на ваш)
-        const API_BASE_URL = 'http://localhost:8000';
+        // Глобальные переменные
+        let currentUser = null;
+        let availableCases = [];
+
+        function updateAuthStatus(message) {
+            document.getElementById('authStatus').textContent = message;
+        }
 
         function showLoading() {
-            document.getElementById('authButton').disabled = true;
+            updateAuthStatus('Авторизация...');
             document.getElementById('loading').style.display = 'flex';
             document.getElementById('error').style.display = 'none';
             document.getElementById('success').style.display = 'none';
         }
 
         function hideLoading() {
-            document.getElementById('authButton').disabled = false;
             document.getElementById('loading').style.display = 'none';
         }
 
@@ -245,6 +471,7 @@
 
                 hideLoading();
                 
+                updateAuthStatus('Добро пожаловать!');
                 if (userData.is_new_user) {
                     showSuccess('Добро пожаловать! Ваш аккаунт создан.');
                 } else {
@@ -252,6 +479,13 @@
                 }
 
                 showUserInfo(userData);
+                
+                // Переходим на главный экран через 2 секунды
+                setTimeout(() => {
+                    updateMainScreenData(userData);
+                    loadCases();
+                    showMainScreen();
+                }, 2000);
 
                 // Сохраняем данные пользователя в localStorage для дальнейшего использования
                 localStorage.setItem('userData', JSON.stringify(userData));
@@ -259,22 +493,36 @@
             } catch (error) {
                 console.error('Ошибка авторизации:', error);
                 hideLoading();
+                updateAuthStatus('Ошибка авторизации');
                 showError(`Ошибка авторизации: ${error.message}`);
             }
         }
 
-        // Проверяем, авторизован ли пользователь при загрузке страницы
+        // Автоматическая авторизация при загрузке страницы
         window.addEventListener('load', () => {
             const savedUserData = localStorage.getItem('userData');
             if (savedUserData) {
                 try {
                     const userData = JSON.parse(savedUserData);
                     showUserInfo(userData);
+                    updateAuthStatus('Авторизован');
                     showSuccess('Вы уже авторизованы');
+                    
+                    // Сразу переходим на главный экран
+                    setTimeout(() => {
+                        updateMainScreenData(userData);
+                        loadCases();
+                        showMainScreen();
+                    }, 1000);
                 } catch (error) {
                     console.error('Ошибка при загрузке сохраненных данных:', error);
                     localStorage.removeItem('userData');
+                    // Запускаем авторизацию
+                    authenticateUser();
                 }
+            } else {
+                // Запускаем авторизацию автоматически
+                authenticateUser();
             }
         });
 
